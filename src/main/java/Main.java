@@ -1,5 +1,3 @@
-import java.io.File;
-import java.util.Arrays;
 
 public class Main {
 
@@ -9,7 +7,7 @@ public class Main {
 //       BooleanSearchEngine engine = new BooleanSearchEngine(new File("pdfs"));
 //       System.out.println(new BooleanSearchEngine(new File ("pdfs")).search("бизнес"));
 
-        Server server=new Server(8989);
+        Server server = new Server(8989);
         server.serverStart();
 
 

@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class PageEntry implements Comparable<PageEntry> {
     private final String fileName;
     private final int page;
@@ -24,10 +22,10 @@ public class PageEntry implements Comparable<PageEntry> {
         this.count = count;
     }
 
-
     @Override
     public int compareTo(PageEntry p) {
-        return Integer.compare(p.count, count);
+        return Integer.compare(p.count, this.count);
+
     }
 
     @Override

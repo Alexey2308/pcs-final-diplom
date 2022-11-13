@@ -30,7 +30,7 @@ public class Server {
                 try (Socket socket = serverSocket.accept();
                      BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                      PrintWriter output = new PrintWriter(new BufferedWriter(
-                                     new OutputStreamWriter(socket.getOutputStream())), true)) {
+                             new OutputStreamWriter(socket.getOutputStream())), true)) {
                     String answer = in.readLine();
                     List<PageEntry> resultList = searchResult.search(answer);
 
