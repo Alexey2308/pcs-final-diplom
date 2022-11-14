@@ -24,9 +24,21 @@ public class PageEntry implements Comparable<PageEntry> {
 
     @Override
     public int compareTo(PageEntry p) {
-        return Integer.compare(p.count, this.count);
-
+        if (count < p.count) {
+            return 1;
+        } else if (count > p.count) {
+            return -1;
+        } else {
+            if (page < p.page) {
+                return 1;
+            } else if (page > p.page) {
+                return -1;
+            } else {
+                return getFileName().compareTo(p.getFileName());
+            }
+        }
     }
+
 
     @Override
     public String toString() {

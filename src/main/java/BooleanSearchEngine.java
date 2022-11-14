@@ -14,9 +14,9 @@ public class BooleanSearchEngine implements SearchEngine {
         // прочтите тут все pdf и сохраните нужные данные,
         // тк во время поиска сервер не должен уже читать файлы
 
-        totalWords = new TreeMap<>();
+        totalWords = new HashMap<>();
 
-        Map<String, Integer> freqs = new TreeMap<>(); // мапа, где ключом будет слово, а значением - частота
+        Map<String, Integer> freqs = new HashMap<>(); // мапа, где ключом будет слово, а значением - частота
         List<File> pdfFileList = List.of(pdfsDir.listFiles());
 
         for (File pdf : pdfFileList) {
@@ -38,11 +38,14 @@ public class BooleanSearchEngine implements SearchEngine {
                     String word = j.toLowerCase();
                     if (freqs.get(word) != null) {
                         count = freqs.get(word.toLowerCase());
-                        List<PageEntry> pageEntryList = new ArrayList<>();
+
                         totalWords.computeIfAbsent(word, f -> new ArrayList<PageEntry>()).add(new PageEntry(pdf.getName(), nomberOfPage, count));
+
                     }
+                    Collections.sort(totalWords.get(word));
                 }
                 freqs.clear();
+
             }
         }
     }
@@ -53,7 +56,7 @@ public class BooleanSearchEngine implements SearchEngine {
         if (totalWords.get(word.toLowerCase()) != null) {
             searchResult = totalWords.get(word.toLowerCase());
         }
-        Collections.sort(searchResult);
+
         return searchResult;
     }
 
